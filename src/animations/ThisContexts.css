@@ -1,0 +1,53 @@
+.tc-ctx-panel { padding-top: 34px; }
+
+.tcx-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+
+.tcx-tab {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 6px 11px;
+  border-radius: 8px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.tcx-tab:hover { background: var(--border); color: var(--text); }
+.tcx-tab.active { border-color: var(--accent); color: var(--text); background: var(--accent-soft); }
+
+.tcx-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 26px 0 14px;
+}
+
+.tcx-call code {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  background: #0d0f14;
+  padding: 10px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+}
+
+.tcx-arrow {
+  font-family: 'SF Mono', monospace;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.tcx-target {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 9px;
+}
+.tcx-target.ok { background: rgba(74, 222, 128, 0.14); color: #86efac; border: 1px solid rgba(74, 222, 128, 0.4); }
+.tcx-target.bad { background: rgba(248, 113, 113, 0.14); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.4); }

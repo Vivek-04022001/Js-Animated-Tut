@@ -27,12 +27,12 @@ Each concept gets its own animation. Work through them in order — later concep
 
 | # | Concept | Status | Animation File |
 |---|---------|--------|----------------|
-| 2.1 | Function Declaration vs Expression | `[ ]` | — |
-| 2.2 | Arrow Functions & `this` binding | `[ ]` | — |
-| 2.3 | Closures | `[ ]` | — |
-| 2.4 | Higher-Order Functions (`map`, `filter`, `reduce`) | `[ ]` | — |
-| 2.5 | Currying & Partial Application | `[ ]` | — |
-| 2.6 | Recursion & Call Stack | `[ ]` | — |
+| 2.1 | Function Declaration vs Expression | `[x]` | `src/animations/DeclarationVsExpression.jsx` |
+| 2.2 | Arrow Functions & `this` binding | `[x]` | `src/animations/ArrowThis.jsx` |
+| 2.3 | Closures | `[x]` | `src/animations/Closures.jsx` |
+| 2.4 | Higher-Order Functions (`map`, `filter`, `reduce`) | `[x]` | `src/animations/HigherOrder.jsx` |
+| 2.5 | Currying & Partial Application | `[x]` | `src/animations/Currying.jsx` |
+| 2.6 | Recursion & Call Stack | `[x]` | `src/animations/Recursion.jsx` |
 
 ---
 
@@ -40,12 +40,12 @@ Each concept gets its own animation. Work through them in order — later concep
 
 | # | Concept | Status | Animation File |
 |---|---------|--------|----------------|
-| 3.1 | Object Creation & Property Access | `[ ]` | — |
-| 3.2 | Prototype Chain | `[ ]` | — |
-| 3.3 | `Object.create()` | `[ ]` | — |
-| 3.4 | Classes & Inheritance (`extends`, `super`) | `[ ]` | — |
-| 3.5 | `this` in different contexts | `[ ]` | — |
-| 3.6 | `call`, `apply`, `bind` | `[ ]` | — |
+| 3.1 | Object Creation & Property Access | `[x]` | `src/animations/ObjectCreation.jsx` |
+| 3.2 | Prototype Chain | `[x]` | `src/animations/PrototypeChain.jsx` |
+| 3.3 | `Object.create()` | `[x]` | `src/animations/ObjectCreate.jsx` |
+| 3.4 | Classes & Inheritance (`extends`, `super`) | `[x]` | `src/animations/Classes.jsx` |
+| 3.5 | `this` in different contexts | `[x]` | `src/animations/ThisContexts.jsx` |
+| 3.6 | `call`, `apply`, `bind` | `[x]` | `src/animations/CallApplyBind.jsx` |
 
 ---
 

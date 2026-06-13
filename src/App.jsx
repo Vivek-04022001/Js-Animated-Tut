@@ -5,7 +5,7 @@ import { concepts, conceptById } from './concepts.js'
 import Sidebar from './components/Sidebar.jsx'
 import ConceptView from './components/ConceptView.jsx'
 import Intro from './components/Intro.jsx'
-import Aurora from './components/Aurora.jsx'
+import { AuroraBackground } from './components/ui/aurora-background.jsx'
 import { loadVisited, saveVisited } from './lib/progress.js'
 import './index.css'
 
@@ -81,7 +81,8 @@ export default function App() {
 
   return (
     <div className="app">
-      <Aurora />
+      {/* Real Aceternity Aurora Background, pinned behind the whole app. */}
+      <AuroraBackground className="dark fixed inset-0 z-0 bg-transparent dark:bg-transparent" />
       {showIntro && <Intro onFinish={finishIntro} />}
 
       <header className="topbar" ref={topbarRef}>

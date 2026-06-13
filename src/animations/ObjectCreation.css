@@ -1,0 +1,32 @@
+.oc-obj {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 14px;
+}
+
+.oc-brace { color: var(--text-faint); }
+
+.oc-prop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 5px 0 5px 18px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: var(--bg-elev);
+  width: fit-content;
+}
+
+.oc-prop.hit { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); }
+.oc-prop.added { border-color: #86efac; }
+
+.oc-key { color: #93c5fd; font-weight: 600; }
+.oc-colon { color: var(--text-faint); }
+.oc-val { color: var(--accent); }
+
+.oc-result {
+  margin-top: 14px;
+  font-family: 'SF Mono', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+}

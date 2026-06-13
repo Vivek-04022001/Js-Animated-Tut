@@ -1,3 +1,42 @@
+/* Tailwind v4 — utilities + theme only (Preflight is intentionally skipped so
+   it doesn't reset the existing hand-written styles). Powers the real
+   Aceternity components. */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+/* Class-based dark mode so Aceternity's dark: styles apply on our dark UI. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Custom animations the Aceternity components reference. */
+@theme {
+  --animate-aurora: aurora 60s linear infinite;
+  --animate-meteor-effect: meteor-effect 5s linear infinite;
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 50% 50%, 50% 50%;
+  }
+  100% {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+@keyframes meteor-effect {
+  0% {
+    transform: rotate(45deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
 :root {
   /* Neutral, near-black canvas with a single restrained accent. */
   --bg: #0c0d10;

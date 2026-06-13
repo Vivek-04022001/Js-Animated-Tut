@@ -15,6 +15,12 @@ import Closures from './animations/Closures.jsx'
 import HigherOrder from './animations/HigherOrder.jsx'
 import Currying from './animations/Currying.jsx'
 import Recursion from './animations/Recursion.jsx'
+import ObjectCreation from './animations/ObjectCreation.jsx'
+import PrototypeChain from './animations/PrototypeChain.jsx'
+import ObjectCreate from './animations/ObjectCreate.jsx'
+import Classes from './animations/Classes.jsx'
+import ThisContexts from './animations/ThisContexts.jsx'
+import CallApplyBind from './animations/CallApplyBind.jsx'
 
 export const concepts = [
   {
@@ -41,12 +47,12 @@ export const concepts = [
   {
     category: 'Objects & Prototypes',
     items: [
-      { id: 'object-creation', title: 'Object Creation', blurb: 'Building and accessing properties.', component: null },
-      { id: 'prototype-chain', title: 'Prototype Chain', blurb: 'How lookups walk the chain.', component: null },
-      { id: 'object-create', title: 'Object.create()', blurb: 'Explicit prototype linking.', component: null },
-      { id: 'classes', title: 'Classes & Inheritance', blurb: 'extends and super under the hood.', component: null },
-      { id: 'this-contexts', title: 'this in Contexts', blurb: 'What this points to, and when.', component: null },
-      { id: 'call-apply-bind', title: 'call, apply, bind', blurb: 'Controlling this manually.', component: null },
+      { id: 'object-creation', title: 'Object Creation', blurb: 'Building and accessing properties.', component: ObjectCreation },
+      { id: 'prototype-chain', title: 'Prototype Chain', blurb: 'How lookups walk the chain.', component: PrototypeChain },
+      { id: 'object-create', title: 'Object.create()', blurb: 'Explicit prototype linking.', component: ObjectCreate },
+      { id: 'classes', title: 'Classes & Inheritance', blurb: 'extends and super under the hood.', component: Classes },
+      { id: 'this-contexts', title: 'this in Contexts', blurb: 'What this points to, and when.', component: ThisContexts },
+      { id: 'call-apply-bind', title: 'call, apply, bind', blurb: 'Controlling this manually.', component: CallApplyBind },
     ],
   },
   {

@@ -1,27 +1,12 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-
-// A handful of meteors with staggered timing for the placeholder backdrop.
-const METEORS = Array.from({ length: 12 }, (_, i) => ({
-  left: `${(i * 8.5) % 100}%`,
-  delay: `${(i * 0.7).toFixed(1)}s`,
-  duration: `${3 + (i % 4)}s`,
-}))
+import { Spotlight } from './ui/spotlight-new.jsx'
+import { Meteors } from './ui/meteors.jsx'
 
 export default function ConceptView({ concept }) {
   const Animation = concept.component
   const rootRef = useRef(null)
-  const canvasRef = useRef(null)
-
-  // Feed the cursor position into CSS vars so the spotlight follows the pointer.
-  const handleMouseMove = (e) => {
-    const el = canvasRef.current
-    if (!el) return
-    const r = el.getBoundingClientRect()
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`)
-    el.style.setProperty('--my', `${e.clientY - r.top}px`)
-  }
 
   // Re-runs every time the selected concept changes (the component stays
   // mounted, so we key the animation off concept.id rather than a remount).
@@ -64,34 +49,23 @@ export default function ConceptView({ concept }) {
         <p className="concept-blurb">{concept.blurb}</p>
       </div>
 
-      <div
-        className={`concept-canvas ${Animation ? 'has-animation' : ''}`}
-        ref={canvasRef}
-        onMouseMove={handleMouseMove}
-      >
+      <div className={`concept-canvas ${Animation ? 'has-animation' : ''}`}>
         {Animation ? (
           <Animation />
         ) : (
-          <div className="placeholder">
-            <div className="meteors" aria-hidden="true">
-              {METEORS.map((m, i) => (
-                <span
-                  className="meteor"
-                  key={i}
-                  style={{
-                    left: m.left,
-                    animationDelay: m.delay,
-                    animationDuration: m.duration,
-                  }}
-                />
-              ))}
+          <>
+            {/* Real Aceternity Spotlight beams behind the placeholder. */}
+            <Spotlight />
+            <div className="placeholder">
+              {/* Real Aceternity Meteors. */}
+              <Meteors number={20} />
+              <div className="placeholder-icon">▶</div>
+              <p className="placeholder-title">Animation coming soon</p>
+              <p className="placeholder-text">
+                This concept doesn't have an animation yet. We'll build it next.
+              </p>
             </div>
-            <div className="placeholder-icon">▶</div>
-            <p className="placeholder-title">Animation coming soon</p>
-            <p className="placeholder-text">
-              This concept doesn't have an animation yet. We'll build it next.
-            </p>
-          </div>
+          </>
         )}
       </div>
     </div>
