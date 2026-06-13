@@ -1,0 +1,76 @@
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+/* JS-yellow */
+.aurora-blob.b1 {
+  width: 46vw;
+  height: 46vw;
+  top: -12vw;
+  left: -8vw;
+  background: radial-gradient(circle, rgba(247, 223, 30, 0.4), transparent 65%);
+  animation: aurora-drift-1 22s ease-in-out infinite;
+}
+
+/* Indigo */
+.aurora-blob.b2 {
+  width: 50vw;
+  height: 50vw;
+  top: -6vw;
+  right: -14vw;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4), transparent 65%);
+  animation: aurora-drift-2 28s ease-in-out infinite;
+}
+
+/* Emerald */
+.aurora-blob.b3 {
+  width: 42vw;
+  height: 42vw;
+  bottom: -16vw;
+  left: 30vw;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.32), transparent 65%);
+  animation: aurora-drift-3 24s ease-in-out infinite;
+}
+
+/* Subtle film grain to keep the gradients from banding. */
+.aurora-grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.04;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.6) 0.5px, transparent 0.5px);
+  background-size: 3px 3px;
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(18vw, 12vh) scale(1.15); }
+  66% { transform: translate(8vw, 26vh) scale(0.95); }
+}
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-16vw, 18vh) scale(1.1); }
+  66% { transform: translate(-6vw, 6vh) scale(1.2); }
+}
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20vw, -14vh) scale(1.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob {
+    animation: none !important;
+  }
+}

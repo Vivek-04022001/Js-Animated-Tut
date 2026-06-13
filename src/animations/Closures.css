@@ -1,0 +1,51 @@
+.cl-stage { display: flex; flex-direction: column; gap: 14px; }
+
+.cl-fn {
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+  background: rgba(74, 222, 128, 0.06);
+  padding: 14px;
+}
+
+.cl-fn-title {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #86efac;
+}
+
+.cl-backpack {
+  margin-top: 10px;
+  border: 1px dashed var(--border);
+  border-radius: 9px;
+  background: var(--bg-elev);
+  padding: 10px 12px;
+}
+
+.cl-backpack-label {
+  display: block;
+  font-size: 10.5px;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+
+.cl-var {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 15px;
+}
+.cl-var code { color: var(--text); font-weight: 600; }
+.cl-eq { color: var(--text-faint); }
+
+.cl-count {
+  display: inline-block;
+  min-width: 26px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.cl-console { padding-left: 2px; }

@@ -1,0 +1,303 @@
+.dt {
+  width: 100%;
+  max-width: 100%;
+  padding: 24px;
+  overflow-x: hidden;
+}
+
+.dt-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 20px;
+  align-items: start;
+  min-width: 0;
+}
+
+/* ---------- Code panel ---------- */
+.dt-code {
+  background: #0d0f14;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 14px 0;
+  font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.dt-line {
+  display: flex;
+  padding: 0 14px;
+  white-space: pre;
+  border-left: 2px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.dt-line.active {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+
+.dt-gutter {
+  width: 22px;
+  color: var(--text-faint);
+  user-select: none;
+  text-align: right;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+.dt-line code { color: var(--text); }
+
+/* ---------- Memory regions ---------- */
+.dt-memory {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.dt-region {
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 28px 14px 14px;
+  position: relative;
+  background: rgba(96, 165, 250, 0.05);
+  min-height: 86px;
+}
+
+.dt-region.heap {
+  background: rgba(94, 234, 212, 0.05);
+}
+
+.dt-region-label {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.dt-region-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.dt-region-empty {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* ---------- Stack cells ---------- */
+.dt-cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 78px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-elev);
+  font-family: 'SF Mono', 'Consolas', monospace;
+}
+
+.dt-cell-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.dt-cell-val,
+.dt-cell-ref {
+  padding: 7px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dt-cell-val { color: var(--accent); }
+.dt-cell-ref { font-weight: 700; }
+
+.dt-cell.focused {
+  box-shadow: 0 0 0 2px var(--accent-glow);
+  border-color: var(--accent);
+}
+.dt-cell.is-ref.focused {
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+/* ---------- Heap objects ---------- */
+.dt-heap-obj {
+  position: relative;
+  border: 1.5px solid;
+  border-radius: 10px;
+  padding: 10px 12px 10px;
+  background: var(--bg-elev);
+  min-width: 120px;
+}
+
+.dt-heap-badge {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #0b0d12;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-family: 'SF Mono', monospace;
+}
+
+.dt-heap-obj.focused {
+  box-shadow: 0 0 18px rgba(94, 234, 212, 0.25);
+}
+
+.dt-heap-props {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.dt-heap-prop {
+  display: flex;
+  gap: 6px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 13px;
+}
+
+.dt-prop-key { color: var(--text-dim); }
+.dt-prop-val { color: var(--accent); font-weight: 600; }
+
+/* ---------- Explanation ---------- */
+.dt-explain {
+  margin-top: 20px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.dt-explain-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.dt-step-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #111;
+  background: var(--accent);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.dt-explain h3 { font-size: 16px; font-weight: 600; }
+.dt-explain p { color: var(--text-dim); font-size: 14px; line-height: 1.55; }
+
+.dt-explain code,
+.dt-card code,
+.dt-example code {
+  background: #0d0f14;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+/* ---------- Controls ---------- */
+.dt-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.dt-controls button {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.12s, opacity 0.12s;
+}
+
+.dt-controls button:hover:not(:disabled) { background: var(--border); }
+.dt-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.dt-controls button.primary {
+  background: var(--accent);
+  color: #111;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.dt-controls button.primary:hover { filter: brightness(1.05); }
+
+/* ---------- Reference cards ---------- */
+.dt-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.dt-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 14px;
+  min-width: 0;
+  border-top: 2px solid var(--border);
+}
+
+.dt-card.prim { border-top-color: #93c5fd; }
+.dt-card.ref { border-top-color: #5eead4; }
+.dt-card.gotcha { border-top-color: var(--accent); }
+
+.dt-card h4 { font-size: 13.5px; margin-bottom: 6px; }
+.dt-card p { font-size: 12.5px; color: var(--text-dim); line-height: 1.5; }
+
+/* ---------- Example ---------- */
+.dt-example { margin-top: 18px; }
+
+.dt-example h4 {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dt-example pre {
+  background: #0d0f14;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .dt { padding: 16px; }
+  .dt-grid { grid-template-columns: 1fr; }
+  .dt-cards { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,247 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  background: #070809;
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+/* ---- The two cinema "doors" that split apart on reveal ---- */
+.intro-half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  z-index: 1;
+  will-change: transform;
+  background: linear-gradient(180deg, #0b0d12, #050609);
+}
+.intro-half.top {
+  top: 0;
+  background: linear-gradient(0deg, #0b0d12, #050609);
+}
+.intro-half.bottom {
+  bottom: 0;
+}
+
+/* Glowing seam where the doors meet. */
+.intro-seam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(247, 223, 30, 0.6),
+    rgba(255, 184, 0, 0.6),
+    transparent
+  );
+  box-shadow: 0 0 26px rgba(247, 223, 30, 0.55);
+  z-index: 3;
+}
+
+/* ---- Stage content ---- */
+.intro-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform, opacity;
+}
+
+/* Perspective grid floor receding into the distance. */
+.intro-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image:
+    linear-gradient(rgba(247, 223, 30, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247, 223, 30, 0.12) 1px, transparent 1px);
+  background-size: 46px 46px;
+  background-position: center;
+  transform: perspective(420px) rotateX(62deg) scale(2.4) translateY(28%);
+  transform-origin: center 75%;
+  mask-image: radial-gradient(ellipse 60% 60% at 50% 60%, #000 10%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 60%, #000 10%, transparent 72%);
+  pointer-events: none;
+}
+
+/* Floating code tokens. */
+.intro-tokens {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.intro-token {
+  position: absolute;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(13px, 1.6vw, 20px);
+  color: rgba(247, 223, 30, 0.55);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+/* Centerpiece cluster. */
+.intro-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  perspective: 800px;
+}
+
+.intro-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: min(720px, 86vw);
+  height: min(720px, 86vw);
+  transform: translate(-50%, -50%) scale(0.4);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(247, 223, 30, 0.2),
+    rgba(255, 184, 0, 0.08) 35%,
+    transparent 68%
+  );
+  opacity: 0;
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* Sonar rings emanating from the badge. */
+.intro-ring {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  margin: -60px 0 0 -60px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(247, 223, 30, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-badge {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 32px;
+  color: #111;
+  background: linear-gradient(135deg, #f7df1e, #ffb800);
+  padding: 12px 18px;
+  border-radius: 16px;
+  letter-spacing: -0.02em;
+  box-shadow: 0 0 34px rgba(247, 223, 30, 0.5);
+}
+
+.intro-title-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 0 8px;
+}
+
+.intro-title {
+  position: relative;
+  display: flex;
+  font-weight: 700;
+  font-size: clamp(38px, 8vw, 88px);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  background: linear-gradient(180deg, #ffffff 32%, #c2c9d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 60px rgba(255, 255, 255, 0.14);
+}
+
+.intro-char {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  white-space: pre;
+  will-change: transform, opacity, filter;
+}
+
+.intro-sweep {
+  position: absolute;
+  top: -25%;
+  left: 0;
+  width: 24%;
+  height: 150%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-18deg);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.intro-tagline {
+  font-size: clamp(12px, 1.5vw, 15px);
+  color: #9aa3b2;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Loading bar. */
+.intro-bar {
+  width: clamp(180px, 26vw, 280px);
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin-top: 4px;
+}
+.intro-bar-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #f7df1e, #ffb800);
+  box-shadow: 0 0 12px rgba(247, 223, 30, 0.6);
+}
+
+/* Full-screen white flash at the reveal moment. */
+.intro-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-skip {
+  position: absolute;
+  bottom: 28px;
+  right: 30px;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #9aa3b2;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.intro-skip:hover {
+  color: #fff;
+  border-color: rgba(247, 223, 30, 0.5);
+  background: rgba(247, 223, 30, 0.08);
+}

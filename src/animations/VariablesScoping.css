@@ -1,0 +1,381 @@
+.vs {
+  width: 100%;
+  max-width: 100%;
+  padding: 24px;
+  overflow-x: hidden; /* clip transient transform overshoot from layout animations */
+}
+
+.vs-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  min-width: 0;
+}
+
+/* ---------- Illustrated legend ---------- */
+.vs-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.vs-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-elev);
+  position: relative;
+  overflow: hidden;
+}
+
+.vs-legend-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+
+.vs-legend-item.kind-var::before { background: #93c5fd; }
+.vs-legend-item.kind-let::before { background: #fcd34d; }
+.vs-legend-item.kind-const::before { background: #86efac; }
+
+.vs-legend-ico {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+}
+
+.vs-legend-ico svg { width: 21px; height: 21px; }
+
+.kind-var .vs-legend-ico { background: rgba(96, 165, 250, 0.16); color: #93c5fd; }
+.kind-let .vs-legend-ico { background: rgba(251, 191, 36, 0.16); color: #fcd34d; }
+.kind-const .vs-legend-ico { background: rgba(74, 222, 128, 0.16); color: #86efac; }
+
+.vs-legend-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.vs-legend-text strong {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 15px;
+}
+
+.vs-legend-text small {
+  font-size: 11px;
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Code panel ---------- */
+.vs-code {
+  background: #0d0f14;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 0;
+  font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.vs-line {
+  display: flex;
+  padding: 0 14px;
+  white-space: pre;
+  border-left: 2px solid transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.vs-line.active {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+
+.vs-gutter {
+  width: 22px;
+  color: var(--text-faint);
+  user-select: none;
+  text-align: right;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+.vs-line code {
+  color: var(--text);
+}
+
+/* ---------- Scope boxes ---------- */
+.vs-nested {
+  min-height: 100%;
+  min-width: 0;
+}
+
+.vs-scope {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 26px 12px 12px;
+  position: relative;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.tone-global { background: rgba(96, 165, 250, 0.06); border-color: rgba(96, 165, 250, 0.3); }
+.tone-fn { background: rgba(167, 139, 250, 0.07); border-color: rgba(167, 139, 250, 0.35); }
+.tone-block { background: rgba(74, 222, 128, 0.07); border-color: rgba(74, 222, 128, 0.35); }
+
+.vs-scope-label {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.vs-scope-ico {
+  display: inline-flex;
+}
+
+.vs-scope-ico svg {
+  width: 13px;
+  height: 13px;
+}
+
+.tone-global .vs-scope-ico { color: #93c5fd; }
+.tone-fn .vs-scope-ico { color: #c4b5fd; }
+.tone-block .vs-scope-ico { color: #86efac; }
+
+.vs-scope-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* A nested scope must occupy its own full-width row, not shrink to content
+   alongside the chips — otherwise its label wraps and overlaps the chips. */
+.vs-scope-body > .vs-scope {
+  flex: 1 1 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.vs-scope-empty {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+  padding: 4px 0;
+}
+
+/* ---------- Variable chips ---------- */
+.vs-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 12.5px;
+}
+
+/* Entrance/exit + focus ring are driven by Framer Motion (motion/react). */
+.vs-chip.focused {
+  border-color: var(--accent);
+}
+
+.vs-chip-kind {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.kind-var .vs-chip-kind { background: rgba(96, 165, 250, 0.2); color: #93c5fd; }
+.kind-let .vs-chip-kind { background: rgba(251, 191, 36, 0.2); color: #fcd34d; }
+.kind-const .vs-chip-kind { background: rgba(74, 222, 128, 0.2); color: #86efac; }
+
+.vs-chip-name { color: var(--text); font-weight: 600; }
+.vs-chip-eq { color: var(--text-faint); }
+.vs-chip-val { color: var(--accent); }
+
+/* ---------- Explanation ---------- */
+.vs-explain {
+  margin-top: 20px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.vs-explain-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.vs-step-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #111;
+  background: var(--accent);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.vs-explain h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.vs-explain p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.vs-explain code,
+.vs-card code {
+  background: #0d0f14;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+/* ---------- Controls ---------- */
+.vs-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.vs-controls button {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.12s, opacity 0.12s;
+}
+
+.vs-controls button:hover:not(:disabled) { background: var(--border); }
+.vs-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.vs-controls button.primary {
+  background: var(--accent);
+  color: #111;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.vs-controls button.primary:hover { filter: brightness(1.05); }
+
+/* ---------- Reference cards ---------- */
+.vs-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.vs-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  min-width: 0;
+}
+
+.vs-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+}
+
+.vs-card-ico {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+}
+
+.vs-card-ico svg { width: 15px; height: 15px; }
+
+.vs-card.kind-var .vs-card-ico { background: rgba(96, 165, 250, 0.16); color: #93c5fd; }
+.vs-card.kind-let .vs-card-ico { background: rgba(251, 191, 36, 0.16); color: #fcd34d; }
+.vs-card.kind-const .vs-card-ico { background: rgba(74, 222, 128, 0.16); color: #86efac; }
+
+.vs-card p {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ---------- Example block ---------- */
+.vs-example {
+  margin-top: 18px;
+}
+
+.vs-example h4 {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vs-example pre {
+  background: #0d0f14;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .vs { padding: 16px; }
+  .vs-grid { grid-template-columns: 1fr; }
+  .vs-cards { grid-template-columns: 1fr; }
+  .vs-legend { grid-template-columns: 1fr; }
+}

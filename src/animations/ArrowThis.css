@@ -1,0 +1,54 @@
+.at-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.at-node {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--bg-elev);
+  padding: 9px 12px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+}
+
+.at-node-label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin-bottom: 3px;
+}
+
+.at-node code { color: var(--text); font-size: 13px; }
+
+.at-node.fn.arrow { border-color: #86efac; }
+.at-node.fn.regular { border-color: #fca5a5; }
+.at-node.fn.method { border-color: #93c5fd; }
+
+.at-arrow { width: 100%; height: 46px; display: block; }
+
+.at-targets { display: flex; flex-direction: column; gap: 8px; }
+
+.at-node.target { transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s; }
+.at-node.target.ghost { opacity: 0.55; }
+.at-node.target.hit {
+  border-color: currentColor;
+  box-shadow: 0 0 0 2px var(--accent-glow);
+  opacity: 1;
+}
+.at-node.target.hit code { color: var(--text); }
+
+.at-result {
+  margin-top: 10px;
+  text-align: center;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 8px;
+}
+.at-result.ok { background: rgba(74, 222, 128, 0.14); color: #86efac; }
+.at-result.bad { background: rgba(248, 113, 113, 0.14); color: #fca5a5; }

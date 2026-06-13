@@ -1,0 +1,55 @@
+.rc-panel { min-height: 230px; }
+
+.rc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 150px;
+}
+
+.rc-frame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid #93c5fd;
+  border-radius: 9px;
+  background: rgba(96, 165, 250, 0.08);
+  font-family: 'SF Mono', 'Consolas', monospace;
+}
+
+.rc-frame code { font-size: 15px; font-weight: 700; color: var(--text); }
+
+.rc-frame.resolved {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.rc-ret { font-size: 12px; color: var(--accent); }
+
+.rc-empty {
+  text-align: center;
+  color: var(--text-faint);
+  font-family: 'SF Mono', monospace;
+  font-size: 13px;
+  padding: 40px 0;
+}
+
+.rc-return {
+  margin-top: 12px;
+  text-align: center;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #86efac;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(74, 222, 128, 0.12);
+}
+
+.rc-return.final {
+  color: #111;
+  background: var(--accent);
+  font-size: 16px;
+}
